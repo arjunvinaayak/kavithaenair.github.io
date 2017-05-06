@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="loklak.org - Query Browser">
+    <meta name="Content-Language" content="en, english"/>
+    <meta name="keywords" lang="en-us"
+          content="search,search engine,twitter,messages,microblogging,
+                   elasticsearch,json,api,loklak,query,browser"/>
+    <meta name="author" content="@0rb1t3r">
+    <link rel="icon" type="image/png" href="../../artwork/favicon.png">
+    <title>Query Browser</title>
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="/css/loklak.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/angular-route.min.js"></script>
+    <script src="../../js/loklak.js"></script>
+    <script>
+      var app = angular.module('querybrowser', []);
+      app.controller('queryCtrl', function($scope, $http) {
+        $http.jsonp("http://api.loklak.org/api/suggest.json?callback=JSON_CALLBACK&count=10000" +
+          "&order=desc&orderby=query_count")
+        .then(function (response) {$scope.queries = response.data.queries;});
+      });
+    </script>
+  </head>
+
+  <body style="overflow-x: auto; overflow-y: auto;">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed"
+                  data-toggle="collapse" data-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://loklak.org">
+          <img src="/images/loklak_org.png"
+               height="24" style="float:left;">: Query Browser
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <h1 class="page-header">Query Browser</h1>
+        <p>This is a visualizer front-end for the <a href="/api.html#suggest">suggest api</a>.
+        The suggestion search index is a record of all search requests;
+        they can be used for suggestions, therefore the name.
+        </p>
+        <div class="row" ng-app="querybrowser" ng-controller="queryCtrl">
+          <table-responsive>
+            <table class="table table-striped table-bordered" style="width:100%;">
+              <thead>
+                <tr>
+                  <th style="vertical-align: top;text-align: left;">Query</th>
+                  <th style="vertical-align: top;text-align: right;">Query Count</th>
+                  <th style="vertical-align: top;text-align: right;">Retrieval Count</th>
+                  <th style="vertical-align: top;text-align: right;">Latest Query</th>
+                  <th style="vertical-align: top;text-align: right;">Next Retrieval</th>
+                  <th style="vertical-align: top;text-align: right;">Messages Per Day</th>
+                  <th style="vertical-align: top;text-align: right;">Message Period</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="query in queries">
+                  <td style="text-align: left;">{{query.query}}</td>
+                  <td style="text-align: right;">{{query.query_count}}</td>
+                  <td style="text-align: right;">{{query.retrieval_count}}</td>
+                  <td style="text-align: right;">{{query.query_last | date:'&nbsp;yyyy-MM-dd&nbsp;HH:mm'}}</td>
+                  <td style="text-align: right;">{{query.retrieval_next | date:'&nbsp;yyyy-MM-dd&nbsp;HH:mm'}}</td>
+                  <td style="text-align: right;">{{query.messages_per_day}}</td>
+                  <td style="text-align: right;">{{query.message_period}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </table-responsive>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

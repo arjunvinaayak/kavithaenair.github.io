@@ -1,0 +1,18 @@
+/todo.txt
+/classes/
+/data/
+
+/.idea
+*.iml
+/hs_err_*.log
+/data.bkp/
+
+*.xml~
+
+# python
+venv/*
+
+dist
+dist/loklak.jar
+/build/
+/.gradle/
