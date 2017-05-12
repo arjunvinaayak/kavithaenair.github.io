@@ -74,7 +74,7 @@ angular.element(document).ready(function () {
       }, 5);
       $('.sidebar').animate({
         top: "-5%"
-      }, 15);
+      }, 20);
     }
     lastScrollTop = st;
   });
