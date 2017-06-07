@@ -2,8 +2,7 @@
   "@context": "http://schema.org",
   "@type": "SoftwareApplication",
   "permissions": [
-    "/api/search.json",
-    "/api/suggest.json"
+    "/api/search.json"
   ],
   "name": "emojiHeatmapper",
   "headline": "Emoji Heatmapper",

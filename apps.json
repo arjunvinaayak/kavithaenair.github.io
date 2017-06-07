@@ -432,8 +432,7 @@
       "@context": "http://schema.org",
       "@type": "SoftwareApplication",
       "permissions": [
-        "/api/search.json",
-        "/api/suggest.json"
+        "/api/search.json"
       ],
       "name": "heatmap",
       "headline": "Loklak Heat Map",
