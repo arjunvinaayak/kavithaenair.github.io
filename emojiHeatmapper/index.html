@@ -6,13 +6,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
-  <title>GSoC | Loklak Emoji Heatmap</title>
+  <!-- OpenLayers CSS -->
+  <link rel="stylesheet" href="http://openlayers.org/en/v3.12.1/css/ol.css" type="text/css">
+  <!-- OpenLayers JS -->
+  <script src="http://openlayers.org/en/v3.12.1/build/ol.js" type="text/javascript"></script>        
+  <title>Loklak Emoji Heatmap</title>
 </head>
 <body background = "bg.jpg">
   <div class="container">
     <div class="page-header">
       <h1>Loklak Emoji Heatmap</h1>
-      <h2><small>Google Summer of Code - FOSSASIA</small></h2>
+      <h2><small>FOSSASIA</small></h2>
     </div>
     <div class="row">
       <div class="col-md-4">
@@ -36,9 +40,7 @@
     <footer>
       <hr>
       <div class="well">
-        <b>Google Summer of Code 2017</b> | Made by Kavitha E Nair <br>
-           Powered by <a href="http://getbootstrap.com"><b>Bootstrap</b></a>
-           and the <a href="http://loklak.org"><b>loklak public API</b></a>
+        <a href="http://loklak.org"><b>loklak public API</b></a>
       </div>
     </footer>
   </div>
@@ -48,5 +50,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
           integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
           crossorigin="anonymous"></script>
+  <!-- Loklak Fetcher Client lib -->
+  <script src="./loklak-fetcher-client.js"></script>
+  <!-- Main script -->
+  <script src="./script.js"></script>
 </body>
 </html>
