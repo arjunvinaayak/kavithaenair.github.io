@@ -5,7 +5,7 @@ on a **map**.
 
 #### How to use the app
 
-On launching the app the user is presented with the search bar and a empty
+On launching the app the user is presented with the search bar and an empty
 map. When the user enters the emoji, then the points appear on the map as per the
 usage of that particular emoji in twitter.
 
