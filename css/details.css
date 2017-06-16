@@ -26,6 +26,24 @@ body {
     color: rgb(51,51,51);
 }
 
+.menu-drawer {
+    display: none;
+    position: fixed;
+    padding: 12px;
+    color: white;
+    background-color: #C8254D   ;
+    border-radius: 10%;
+    margin-top: 80px;
+    margin-left: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.menu-drawer:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 .sidebar {
     position: fixed;
     width: 16%;
@@ -33,6 +51,14 @@ body {
     height: 100%;
     overflow-y: auto;
     margin-top: 75px;
+    transition: all 0.3s;
+}
+
+.sidebar-header-close {
+    color: white;
+    cursor: pointer;
+    margin-left: 80px;
+    display: none;
 }
 
 .sidebar-header {
@@ -73,12 +99,9 @@ body {
 }
 
 .menu-item:hover {
-    text-decoration: none;
-}
-
-.menu-item:hover {
     background-color: grey;
     color:white;
+    text-decoration: none;
 }
 
 .selected {
@@ -151,12 +174,139 @@ body {
     margin-left: 50px;
 }
 
-@media (max-width: 500px) {
+.app-data {
+    box-shadow: 0 4px 8px 2px rgba(0,0,0,0.2);
+    margin-top: 120px;
+    margin-left: -70px;
+    padding-bottom: 50px;
+    border-radius: 4px;
+}
+
+.app-image-and-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left:26px;
+    padding-bottom: 50px;
+    padding-top: 26px;
+    flex-wrap: wrap;
+}
+
+.app-info {
+    margin-right: 26px;
+}
+
+.app-name {
+    color: #212121;
+}
+
+.app-headline {
+    color: #616161;
+}
+
+.author-link {
+    color: #757575;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+.author-link:hover {
+    color: #424242;
+    text-decoration: none;
+}
+
+.short-desc {
+    margin-top: 26px;
+    color: #616161;
+}
+
+.try-now {
+    display: block;
+    float: right;
+    margin-top: 40px;
+    background-color: #C8254D;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: all 0.5s;
+}
+
+.try-now:hover {
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    text-decoration: none;
+}
+
+.app-carousel {
+    padding-left: 26px;
+    padding-right: 26px;
+}
+
+.get-started {
+    padding-left: 26px;
+    padding-right: 26px;
+    margin-top: 40px;
+}
+
+.started-header {
+    color: #616161;
+}
+
+.get-started-body {
+    color: #424242;
+}
+
+@media (max-width: 960px) {
     .sidebar {
-        display: none;
+        width: 0px;
+        z-index: 1;
     }
+
     .similar-apps {
         margin-right: -100px;
         margin-left: 50px;
+    }
+
+    .app-data {
+        margin-left: 16px;
+        margin-right: 16px;
+        margin-bottom: 0px;
+    }
+
+    .try-now {
+        float: left;
+    }
+
+    .menu-drawer {
+        display: block;
+        z-index: 1;
+    }
+
+    .sidebar-header-close {
+        display: block;
+    }
+
+}
+
+@media (max-width: 500px) {
+    .similar-apps {
+        margin-right: -100px;
+        margin-left: 50px;
+    }
+
+    .app-info {
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 350px) {
+    .loklak-brand {
+        font-size: 24px;
+    }
+
+    .app-image {
+        margin-right: 26px;
     }
 }
