@@ -10,6 +10,13 @@ var pointFeature = new ol.Feature(point);
 var vectorSource = new ol.source.Vector();
 
 var style = new ol.style.Style({
+    image: new ol.style.Icon({
+        anchor: [0.5, 46],
+        anchorXUnits: 'fraction',
+        anchorYUnits: 'pixels',
+        opacity: 0.75,
+        src: 'http://openlayers.org/en/v3.9.0/examples/data/icon.png'
+    })
     image: new ol.style.Circle({
         fill: new ol.style.Fill({
             color: 'rgba(255, 100, 50, 0.3)'
