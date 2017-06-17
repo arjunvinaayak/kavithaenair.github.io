@@ -17,16 +17,6 @@ var style = new ol.style.Style({
         opacity: 0.75,
         src: 'http://openlayers.org/en/v3.9.0/examples/data/icon.png'
     })
-    image: new ol.style.Circle({
-        fill: new ol.style.Fill({
-            color: 'rgba(255, 100, 50, 0.3)'
-        }),
-        stroke: new ol.style.Stroke({
-            width: 1,
-            color: 'rgba(255, 100, 50, 0.8)'
-        }),
-        radius: 7
-    }),
 });
 
 var vectorLayer = new ol.layer.Vector({
