@@ -2,27 +2,6 @@ window.loklakFetcher = (function () {
     var script = null;
 
     var loklakFetcher = {
-        checkTweets: function (query, callback) {
-            if(callback === undefined) {
-                throw new Error('[LOKLAK-FETCHER] No callback provided');
-            }
-
-            var file = 'emoji.json?callback=loklakFetcher.emoji';
-
-            if(script !== null) {
-                document.head.removeChild(script);
-            }
-
-            this.emoji = function (data) {
-                callback1(data);
-            };
-
-            script = document.createElement("script");
-            script.src = file;
-            document.head.appendChild(script);
-
-        }
-
         getTweets: function (query, callback) {
             if(typeof options === 'function') { // A callback has been provided as 2nd
                                             // argument (no options)

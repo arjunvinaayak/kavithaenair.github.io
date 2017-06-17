@@ -60,7 +60,28 @@ function updateMap() {
 
 var query = document.getElementById('searchField').value;
 
-loklakFetcher.checkTweets(query, function(tweets) {
+var script = null;
+
+checkTweets: function (query, callback) {
+    if(callback === undefined) {
+        throw new Error('[LOKLAK-FETCHER] No callback provided');
+    }
+
+    var file = 'emoji.json?callback=emoji';
+
+    if(script !== null) {
+        document.head.removeChild(script);
+    }
+
+    emoji = function (data) {
+        callback(data);
+    };
+    script = document.createElement("script");
+    script.src = file;
+    document.head.appendChild(script);
+}
+
+checkTweets(query, function(tweets) {
     for(var i = 0; i < tweets.data.length; i++) {
         if (tweets.data[i].indexOf(query) !== -1) {
             break;
