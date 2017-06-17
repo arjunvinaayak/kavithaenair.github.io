@@ -53,11 +53,7 @@ function emptyVector() {
   }
 }
 
-function checkTweets() {
-    if(vectorSource.getFeatures().length > 0) { // Empty the vector, if full
-        emptyVector();
-    }
-    
+function validateQuery() {
     var query = document.getElementById('searchField').value;
     $.getJSON( "emoji.json", function(tweets) {
         var flag = 0;
@@ -78,6 +74,9 @@ function checkTweets() {
 }
 
 function updateMap() {
+  if(vectorSource.getFeatures().length > 0) { // Empty the vector, if full
+    emptyVector();
+  }
 
 var query = document.getElementById('searchField').value;
 
@@ -98,10 +97,10 @@ loklakFetcher.getTweets(query, function(tweets) {
 }
 
 // Event listeners for updating the map
-document.getElementById('searchButton').addEventListener('click', checkTweets);
+document.getElementById('searchButton').addEventListener('click', validateQuery);
 
 document.getElementById('searchField').addEventListener('keyup', function(e) {
   if(e.keyCode === 13) {
-    checkTweets();
+    validateQuery();
   }
 });
