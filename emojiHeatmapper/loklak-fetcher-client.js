@@ -3,6 +3,22 @@ window.loklakFetcher = (function () {
 
     var loklakFetcher = {
         getTweets: function (query, callback) {
+             var flag = 0;
+             $http.getJSON("emojiHeatmapper/emoji.json");
+             for(var i = 0; i < response.data.data.length; i++) {
+                if (response.data.data[i].char === query) {
+                    flag = 1;
+                    break;
+                } else {
+                    continue;
+                }
+            }
+ 
+            if (flag == 1) {
+                 continue;
+            } else {
+                 return;
+            }
             if(typeof options === 'function') { // A callback has been provided as 2nd
                                             // argument (no options)
                 options = {};
