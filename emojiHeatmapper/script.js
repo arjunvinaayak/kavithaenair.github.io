@@ -62,10 +62,8 @@ function checkTweets(query) {
                 return 1;
             }
         }
-        if(i === tweets.data.length) {
-            return 0;
-        }
     });
+    return 0;
 }
 
 function updateMap() {
