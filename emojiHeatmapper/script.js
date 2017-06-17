@@ -55,21 +55,23 @@ function emptyVector() {
 
 function validateQuery() {
     var query = document.getElementById('searchField').value;
+
     $.getJSON( "emoji.json", function(tweets) {
         var flag = 0;
+
         for(var i = 0; i < tweets.data.length; i++) {
             if (tweets.data[i].indexOf(query) !== -1) {
                 flag = 1;
                 break;
             }
         }
+
         if (flag == 1) {
              console.log("emoji found plotting map");
              updateMap();
-         }
-         else {
+         } else {
              console.log("emoji not found");
-             alert("Enter a emoticon/emoji to see results");
+             alert("Enter an emoticon/emoji to see results");
          }
     });
 }
