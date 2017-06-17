@@ -62,15 +62,20 @@ var query = document.getElementById('searchField').value;
 
 // Fetch loklak API data, and fill the vector
 loklakFetcher.getTweets(query, function(tweets) {
-    for(var i = 0; i < tweets.statuses.length; i++) {
-        if(tweets.statuses[i].location_point !== undefined){
-            // Creation of the point with the tweet's coordinates
-            //  Coords system swap is required: OpenLayers uses by default
-            //  EPSG:3857, while loklak's output is EPSG:4326
-            var point = new ol.geom.Point(ol.proj.transform(tweets.statuses[i].location_point, 'EPSG:4326', 'EPSG:3857'));
-            vectorSource.addFeature(new ol.Feature({  // Add the point to the data vector
-                geometry: point
-            }));
+    $http.get("emojiHeatmapper/emoji.json");
+    for(var i=0;i<response.data.data.length;i++) {
+        if (response.data.data[i].indexOf(query)!== -1) {
+            for(var i = 0; i < tweets.statuses.length; i++) {
+                if(tweets.statuses[i].location_point !== undefined){
+                    // Creation of the point with the tweet's coordinates
+                    //  Coords system swap is required: OpenLayers uses by default
+                    //  EPSG:3857, while loklak's output is EPSG:4326
+                    var point = new ol.geom.Point(ol.proj.transform(tweets.statuses[i].location_point, 'EPSG:4326', 'EPSG:3857'));
+                    vectorSource.addFeature(new ol.Feature({  // Add the point to the data vector
+                        geometry: point
+                    }));
+                }
+            }
         }
     }
 });
