@@ -1,5 +1,3 @@
-var http = require('http');
-
 // Geometries
 var point = new ol.geom.Point(
     ol.proj.transform([3,50], 'EPSG:4326', 'EPSG:3857')
