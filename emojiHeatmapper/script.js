@@ -69,6 +69,7 @@ function validateQuery() {
          }
          else {
              console.log("emoji not found");
+             alert("Enter a emoticon/emoji to see results");
          }
     });
 }
