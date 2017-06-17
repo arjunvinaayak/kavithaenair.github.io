@@ -58,7 +58,16 @@ function updateMap() {
     emptyVector();
   }
 
-var query = document.getElementById('searchField').value;
+loklakFetcher.checkTweets(query, function(tweets) {
+    for(var i = 0; i < tweets.data.length; i++) {
+        if (tweets.data[i].indexOf(query) !== -1) {
+            break;
+        }
+    }
+    if(i === tweets.data.length) {
+        return;
+    }
+});
 
 // Fetch loklak API data, and fill the vector
 loklakFetcher.getTweets(query, function(tweets) {
