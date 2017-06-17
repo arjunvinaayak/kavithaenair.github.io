@@ -57,6 +57,7 @@ var script = null;
 
 function checkTweets(query) {
     $.getJSON( "emoji.json", function(tweets) {
+        console.log(tweets);
         for(var i = 0; i < tweets.data.length; i++) {
             if (tweets.data[i].indexOf(query) !== -1) {
                 return 1;
