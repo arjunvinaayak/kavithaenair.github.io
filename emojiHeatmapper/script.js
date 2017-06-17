@@ -54,6 +54,10 @@ function emptyVector() {
 }
 
 function checkTweets() {
+    if(vectorSource.getFeatures().length > 0) { // Empty the vector, if full
+        emptyVector();
+    }
+    
     var query = document.getElementById('searchField').value;
     $.getJSON( "emoji.json", function(tweets) {
         var flag = 0;
@@ -74,9 +78,6 @@ function checkTweets() {
 }
 
 function updateMap() {
-  if(vectorSource.getFeatures().length > 0) { // Empty the vector, if full
-    emptyVector();
-  }
 
 var query = document.getElementById('searchField').value;
 
