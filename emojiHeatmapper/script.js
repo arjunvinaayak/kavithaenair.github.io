@@ -1,3 +1,5 @@
+var http = require('http');
+
 // Geometries
 var point = new ol.geom.Point(
     ol.proj.transform([3,50], 'EPSG:4326', 'EPSG:3857')
@@ -53,6 +55,21 @@ function emptyVector() {
   }
 }
 
+var script = null;
+
+function checkTweets(query) {
+    $.getJSON( "emoji.json", function(tweets) {
+        for(var i = 0; i < tweets.data.length; i++) {
+            if (tweets.data[i].indexOf(query) !== -1) {
+                return 1;
+            }
+        }
+        if(i === tweets.data.length) {
+            return 0;
+        }
+    });
+}
+
 function updateMap() {
   if(vectorSource.getFeatures().length > 0) { // Empty the vector, if full
     emptyVector();
@@ -60,37 +77,11 @@ function updateMap() {
 
 var query = document.getElementById('searchField').value;
 
-var script = null;
+var flag = checkTweets(query);
 
-checkTweets: function (query, callback) {
-    if(callback === undefined) {
-        throw new Error('[LOKLAK-FETCHER] No callback provided');
-    }
-
-    var file = 'emoji.json?callback=emoji';
-
-    if(script !== null) {
-        document.head.removeChild(script);
-    }
-
-    emoji = function (data) {
-        callback(data);
-    };
-    script = document.createElement("script");
-    script.src = file;
-    document.head.appendChild(script);
+if(flag !== 1) {
+    return;
 }
-
-checkTweets(query, function(tweets) {
-    for(var i = 0; i < tweets.data.length; i++) {
-        if (tweets.data[i].indexOf(query) !== -1) {
-            break;
-        }
-    }
-    if(i === tweets.data.length) {
-        return;
-    }
-});
 
 // Fetch loklak API data, and fill the vector
 loklakFetcher.getTweets(query, function(tweets) {
