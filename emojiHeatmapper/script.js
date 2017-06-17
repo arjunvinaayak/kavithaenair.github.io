@@ -56,16 +56,17 @@ function emptyVector() {
 var script = null;
 
 function checkTweets(query) {
+    var flag = 0;
     $.getJSON( "emoji.json", function(tweets) {
         console.log(tweets);
         for(var i = 0; i < tweets.data.length; i++) {
             if (tweets.data[i].indexOf(query) !== -1) {
                 console.log(tweets.data[i].indexOf(query));
-                return 1;
+                flag = 1;
             }
         }
     });
-    return 0;
+    return flag;
 }
 
 function updateMap() {
@@ -75,10 +76,8 @@ function updateMap() {
 
 var query = document.getElementById('searchField').value;
 
-var flag = checkTweets(query);
-
-console.log(flag);
-if(flag !== 1) {
+console.log(checkTweets(query));
+if(checkTweets(query) !== 1) {
     return;
 }
 
