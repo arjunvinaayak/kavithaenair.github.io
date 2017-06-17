@@ -53,20 +53,24 @@ function emptyVector() {
   }
 }
 
-var script = null;
-
-function checkTweets(query) {
-    var flag = 0;
+function checkTweets() {
+    var query = document.getElementById('searchField').value;
     $.getJSON( "emoji.json", function(tweets) {
-        console.log(tweets);
+        var flag = 0;
         for(var i = 0; i < tweets.data.length; i++) {
             if (tweets.data[i].indexOf(query) !== -1) {
-                console.log(tweets.data[i].indexOf(query));
                 flag = 1;
+                break;
             }
         }
+        if (flag == 1) {
+             console.log("emoji found plotting map");
+             updateMap();
+         }
+         else {
+             console.log("emoji not found");
+         }
     });
-    return flag;
 }
 
 function updateMap() {
@@ -75,11 +79,6 @@ function updateMap() {
   }
 
 var query = document.getElementById('searchField').value;
-
-console.log(checkTweets(query));
-if(checkTweets(query) !== 1) {
-    return;
-}
 
 // Fetch loklak API data, and fill the vector
 loklakFetcher.getTweets(query, function(tweets) {
@@ -98,10 +97,10 @@ loklakFetcher.getTweets(query, function(tweets) {
 }
 
 // Event listeners for updating the map
-document.getElementById('searchButton').addEventListener('click', updateMap);
+document.getElementById('searchButton').addEventListener('click', checkTweets);
 
 document.getElementById('searchField').addEventListener('keyup', function(e) {
   if(e.keyCode === 13) {
-    updateMap();
+    checkTweets();
   }
 });
