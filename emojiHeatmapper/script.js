@@ -9,18 +9,18 @@ var pointFeature = new ol.Feature(point);
 // Source and vector layer
 var vectorSource = new ol.source.Vector();
 
-var style = new ol.style.Style({
-    image: new ol.style.Circle({
-        fill: new ol.style.Fill({
-            color: 'rgba(255, 100, 50, 0.3)'
-        }),
-        stroke: new ol.style.Stroke({
-            width: 1,
-            color: 'rgba(255, 100, 50, 0.8)'
-        }),
-        radius: 7
-    }),
-});
+//var style = new ol.style.Style({
+  //  image: new ol.style.Circle({
+    //    fill: new ol.style.Fill({
+      //      color: 'rgba(255, 100, 50, 0.3)'
+        //}),
+//        stroke: new ol.style.Stroke({
+  //          width: 1,
+    //        color: 'rgba(255, 100, 50, 0.8)'
+      //  }),
+        //radius: 7
+   // }),
+//});
 
 var vectorLayer = new ol.layer.Vector({
     source: vectorSource,
@@ -55,22 +55,34 @@ function emptyVector() {
 
 function validateQuery() {
     var query = document.getElementById('searchField').value;
-
     $.getJSON( "emoji.json", function(tweets) {
         var flag = 0;
-
         for(var i = 0; i < tweets.data.length; i++) {
             if (tweets.data[i].indexOf(query) !== -1) {
                 flag = 1;
                 break;
             }
         }
-
         if (flag == 1) {
-             console.log("emoji found plotting map");
+             //emoji found plotting map
+             var style = new ol.style.Style({
+              stroke: new ol.style.Stroke({
+                color: [64, 200, 200, 0.5],
+                width: 5
+              }),
+              text: new ol.style.Text({
+                text: document.getElementById('searchField').value,
+                fill: new ol.style.Fill({
+                  color: [64, 64, 64, 0.75]
+                })
+              })
+            });
+             console.log(document.getElementById('searchField').value);
+             //plotting map
              updateMap();
-         } else {
-             console.log("emoji not found");
+         }
+         else {
+             //emoji not found
              alert("Enter an emoticon/emoji to see results");
          }
     });
