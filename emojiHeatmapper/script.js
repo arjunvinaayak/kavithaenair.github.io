@@ -10,17 +10,17 @@ var pointFeature = new ol.Feature(point);
 var vectorSource = new ol.source.Vector();
 
 var style = new ol.style.Style({
-	stroke: new ol.style.Stroke({
-		color: [64, 200, 200, 0.5],
-		width: 5
-	}),
-	text: new ol.style.Text({
-		text: document.getElementById('searchField').value !== '' ? document.getElementById('searchField').value : '',
-    font: '30px sans-serif',
-		fill: new ol.style.Fill({
-			color: [64, 64, 64, 0.75]
-		})
-	})
+    stroke: new ol.style.Stroke({
+        color: [64, 200, 200, 0.5],
+        width: 5
+    }),
+    text: new ol.style.Text({
+        font: '30px sans-serif',
+        text: document.getElementById('searchField').value !== '' ? document.getElementById('searchField').value : '',
+        fill: new ol.style.Fill({
+            color: [64, 64, 64, 0.75]
+        })
+    })
 });
 
 var styles = [style];
