@@ -11,9 +11,9 @@ window.loklakFetcher = (function () {
                 throw new Error('[LOKLAK-FETCHER] No callback provided');
             }
 
-            var settings = [ 'source', 'fields', 'minified' ];
+            var settings = [ 'source', 'fields', 'minified', 'count' ];
         // Field names for all the possible parameters
-            var defaults = [ 'all', '', true ];  // Default values
+            var defaults = [ 'all', '', true, 1000000 ];  // Default values
 
         // Check if no options have been provided
             if(typeof options === 'undefined') {
@@ -31,6 +31,7 @@ window.loklakFetcher = (function () {
             var url = 'http://loklak.org/api/search.json' +
                 '?callback=loklakFetcher.handleData' +
                 '&q=' + query +
+                '&count=' +options.count +
                 '&source=' + options.source +
                 '&fields=' + options.fields +
                 '&minified=' + options.minified;
