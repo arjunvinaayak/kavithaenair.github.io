@@ -318,7 +318,7 @@
       "applicationCategory": "Visualizer",
       "applicationSubCategory": "About Project",
       "operatingSystem": "http://loklak.org",
-      "oneLineDescription":"An applicaton to visually compare twitter profiles.",
+      "oneLineDescription":"An applicaton to visually compare twitter profiles",
       "getStarted":"getStarted.md",
       "appUse":"appUse.md",
       "appSource": "https://github.com/fossasia/apps.loklak.org/tree/master/compareTwitterProfiles",
