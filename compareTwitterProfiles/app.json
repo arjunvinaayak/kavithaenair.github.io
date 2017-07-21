@@ -14,7 +14,7 @@
   "appUse":"appUse.md",
   "promoImage":"promo.png",
   "appImages":["disp1.png", "disp2.png", "disp3.png"],
-  "oneLineDescription":"An application which shows comparison between two Twitter Profiles.",  
+  "oneLineDescription":"An application which shows comparison between two twitter profiles",
   "operatingSystem": "http://loklak.org",
   "contributors": [{"name": "kavithaenair"}],
   "appSource": "https://github.com/fossasia/apps.loklak.org/tree/master/compareTwitterProfiles",

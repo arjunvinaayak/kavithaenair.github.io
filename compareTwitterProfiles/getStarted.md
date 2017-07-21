@@ -5,7 +5,7 @@ screen names, number of followers, statuses or tweets etc.
 
 #### How to use the app
 
-On launching the app the user is presented with the search bars, an compare button and
+On launching the app the user is presented with the search bars, a compare button and
 empty comparison tables. When the user enters the user profiles names in the
 search bars, which acts as the search queries. Then two tables appear on the screen with
 relevant details of the user.
