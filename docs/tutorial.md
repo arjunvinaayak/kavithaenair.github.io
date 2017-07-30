@@ -23,7 +23,7 @@ Next, you must have an account on [github](https://github.com). If you do not
 already have an account on github then please create one now. Github is an awesome place for
 code collaboration.
 
-Lastly, since its all about creating apps using the loklak api, you must go through the loklak
+Lastly, since its all about creating apps using the loklak API, you must go through the loklak
 api documentation [here](http://dev.loklak.org/server/)
 
 That being said, if you have already done what is mentioned in the above points, then you are
