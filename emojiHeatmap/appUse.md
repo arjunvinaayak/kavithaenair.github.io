@@ -1,6 +1,6 @@
-This app showcases another feature of the **loklak API**, comparison
-between two Twitter profiles.
+This app showcases yet another feature of the **loklak API**, all emojis
+occurences in tweets in the form of heatmap.
 
-This app shows comparison between two Twitter profiles in the form of
-comparison tables where the usernames of the users/profiles are queries
-to the loklak User Profile API.
+This app shows a heatmap where users are not asked to type any query to
+search instead the app retrives all the tweets conatining emoticons
+and show it on the map in the form of heatmap.

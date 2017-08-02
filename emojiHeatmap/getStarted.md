@@ -1,11 +1,9 @@
-#### compareTwitterProfile App showcases the user Twitter profile in comparison form.
+#### emojiHeatmap app shows usage of emojis.
 
-The app is fun as we can check for any two Twitter profiles and compare data like user
-screen names, number of followers, statuses or tweets etc.
+The app shows us the all the tweets containing emoticons on the heatmap.
 
 #### How to use the app
 
-On launching the app the user is presented with the search bars, a compare button and
-empty comparison tables. When the user enters the user profiles names in the
-search bars, which acts as the search queries. Then two tables appear on the screen with
-relevant details of the user.
+On launching the app the user is a map where initially it will be empty and slowly starts
+populating data on the map in the form of heatmap. Here we get data i.e., the location of
+all the tweets containing emojis on the map.
