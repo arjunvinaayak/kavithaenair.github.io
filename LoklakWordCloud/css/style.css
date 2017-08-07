@@ -1,0 +1,109 @@
+body {
+    overflow-x: hidden;
+}
+
+.navbar-custom {
+    padding: 12px;
+    background-color: #F1F1F1;
+}
+
+.loklak-brand {
+    font-family: "Courier New";
+    font-size: 35px;
+    text-decoration: none;
+    line-height: 20px;
+    color: rgb(51,51,51);
+    line-height: 20px;
+}
+
+.loklak-brand:hover {
+    text-decoration: none;
+    color: rgb(51,51,51);
+}
+
+.loklak-header {
+    color: #C8254D;
+}
+
+.tweet-input {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.tweet-search {
+    color: #FFFFFF;
+    background-color: #D81B60;
+}
+
+.tweet-input-field:focus {
+    border-color: #D81B60;
+}
+
+.wordcloud {
+    height: 380px;
+    margin-bottom: 10px;
+}
+
+.input-control {
+    min-height: 180px;
+    padding: 20px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 4px rgba(0,0,0,0.2);
+}
+
+.wordcloud .jqcloud-word {
+    cursor: pointer;
+}
+
+.date-filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.start-date {
+    margin-right: 5px;
+}
+
+.end-date {
+    margin-left: 5px;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filter-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+    transition: color 0.3s;
+}
+
+.select-all {
+    border: 1px solid;
+    transition: color 0.3s;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    color: #757575;
+}
+
+.select-all:hover {
+    color: #212121;
+}
