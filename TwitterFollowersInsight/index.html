@@ -45,13 +45,13 @@
                                         placeholder="Search for a User"
                                         ng-init="query = ''"
                                         ng-keyup="$event.keyCode == 13 && query != '' ? Search() : null"
-                                        oninvalid="this.setCustomValidity('Please Enter something to Visualize')"
+                                        oninvalid="this.setCustomValidity('Please Enter Username')"
                                         ng-required="true">
                                     <span class="input-group-btn">
                                         <button class="btn btn btn-primary" href='#'
                                             type="button" id="button"
                                             ng-click="query != '' ? Search() : null">Search
-                                    </button>
+                                        </button>
                                     </span>
                                 </div>
                             </div>
@@ -72,11 +72,12 @@
                 <div class="col-md-6">
                     <div ng-if="followersStatus" class = "info-box">
                         <center>
-                            <h2>Followers</h2>
+                            <h2>Followers: {{ followersCount }}</h2>
                         </center>
                         <ul class="gallery-container" >
-                            <li class="gallery-item" style="list-style-type: none;" ng-repeat="value in followersStatus | limitTo:1000">
-                                <a href="">
+                            <li class="gallery-item" style="list-style-type: none;"
+                                ng-repeat="value in followersStatus | limitTo:followersCount">
+                                <a href ng-click="Search(value[0])">
                                     <div class="item-image">
                                         <img src="{{ value[1] }}" style="height: 94px;width: 94px" />
                                     </div>
@@ -90,8 +91,6 @@
                                         <div class="item-followers">
                                             <span class="item-label">Followers: </span>
                                             <span class="item-content">{{ value[3] }}</span>
-                                            <span class="item-label">Following: </span>
-                                            <span class="item-content">{{ value[4] }}</span>
                                         </div>
                                     </div>
                                 </a>
@@ -102,11 +101,12 @@
                 <div class="col-md-6">
                     <div ng-if="followingStatus" class= "info-box">
                         <center>
-                            <h2>Following</h2>
+                            <h2>Following: {{ followingCount }}</h2>
                         </center>
-                        <ul class="gallery-container" style="list-style-type: none;">
-                            <li class="gallery-item" style="list-style-type: none;" ng-repeat="value in followingStatus | limitTo:1000">
-                                <a href="">
+                        <ul class="gallery-container">
+                            <li class="gallery-item" style="list-style-type: none;"
+                                ng-repeat="value in followingStatus | limitTo:followingCount">
+                                <a href ng-click="Search(value[0])">
                                     <div class="item-image">
                                         <img src="{{ value[1] }}" style="height: 94px;width: 94px"/>
                                     </div>
@@ -120,8 +120,6 @@
                                         <div class="item-followers">
                                             <span class="item-label">Followers: </span>
                                             <span class="item-content">{{ value[3] }}</span>
-                                            <span class="item-label">Following: </span>
-                                            <span class="item-content">{{ value[4] }}</span>
                                         </div>
                                     </div>
                                 </a>
