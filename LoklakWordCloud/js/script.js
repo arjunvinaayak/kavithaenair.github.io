@@ -9,20 +9,62 @@ app.controller("app", function ($scope, $http) {
     $scope.mentions = true;
     $scope.tweetbody = true;
     $scope.allSelected = true;
+    $scope.error = null;
+    $scope.isLoading = false;
+    $scope.download = false;
+    $scope.imageType = "jpeg";
+    $scope.imageExt = "jpg";
 
     $(".date").datepicker();
     $(".date").datepicker( "option", "dateFormat", "yy-mm-dd");
+
+    $scope.showError = function() {
+        $(".snackbar").addClass("show");
+        setTimeout(function(){ $(".snackbar").removeClass("show") }, 3000);
+    }
+
+    $scope.changeType = function(type, ext) {
+        $scope.imageType = type;
+        $scope.imageExt = ext;
+    }
 
     $scope.search = function () {
         $scope.wordFreq = [];
         $scope.wordCloudData = [];
         $scope.filteredWords = [];
         $scope.wordFreq = {};
+        $scope.error = null;
+
+        if ($scope.tweet === "" || $scope.tweet === undefined) {
+            $scope.error = "Please enter a valid query word";
+            $scope.showError();
+            return;
+        }
+        if ($scope.isLoading === true) {
+            $scope.error = "Previous search not completed. Please wait...";
+            $scope.showError();
+            return;
+        }
+        if (!navigator.onLine) {
+            $scope.error = "You are currently offline. Please check your internet connection!";
+            $scope.showError();
+            return;
+        }
         var query = $scope.tweet.startsWith("#") ? $scope.tweet.substring(1) : $scope.tweet;
 
         var queryString = "q=" + query;
         var sinceDate = $(".start-date").val();
         var endDate = $(".end-date").val();
+
+        if ((sinceDate !== "" && sinceDate !== undefined) && (endDate !== "" && endDate !== undefined)) {
+            var date1 = new Date(sinceDate);
+            var date2 = new Date(endDate);
+            if (date1 > date2) {
+                $scope.error = "To date should be after From date";
+                $scope.showError();
+                return;
+            }
+        }
 
         if (sinceDate !== undefined && sinceDate !== "" ) {
             queryString += "%20since:" + sinceDate;
@@ -31,12 +73,14 @@ app.controller("app", function ($scope, $http) {
             queryString += "%20until:" + endDate;
         }
 
-        var url = "http://35.184.151.104/api/search.json?callback=JSON_CALLBACK&count=100&" + queryString;
-
+        var url = "http://api.loklak.org/api/search.json?callback=JSON_CALLBACK&count=100&" + queryString;
+        $scope.isLoading = true;
         $http.jsonp(url)
             .then(function (response) {
                 $scope.createWordCloudData(response.data.statuses);
-                $scope.tweet = null;
+                $scope.tweet = "";
+                $scope.isLoading = false;
+                $scope.download = true;
             });
     }
     $scope.createWordCloudData = function(data) {
@@ -157,5 +201,23 @@ app.controller("app", function ($scope, $http) {
             $scope.mentions = false;
             $scope.tweetbody = false;
         }
+    }
+
+    $scope.export = function() {
+        html2canvas($(".wordcloud"), {
+          onrendered: function(canvas) {
+            var imgageData = canvas.toDataURL("image/" + $scope.imageType);
+            var regex = /^data:image\/jpeg/;
+            if ($scope.imageType === "png") {
+                regex = /^data:image\/png/;
+            }
+            var newData = imgageData.replace(regex, "data:application/octet-stream");
+            canvas.style.width = "80%";
+            $(".wordcloud-canvas").html(canvas);
+            $(".save-btn").attr("download", "Wordcloud." + $scope.imageExt).attr("href", newData);
+            $("#preview").modal('show');
+          },
+          background: "#ffffff"
+        });
     }
 });

@@ -60,8 +60,8 @@ app.controller("app", function ($scope, $http) {
         if ((sinceDate !== undefined && endDate !== "") && (endDate !== undefined && endDate !== "")) {
             var date1 = new Date(sinceDate);
             var date2 = new Date(endDate);
-            if (endDate < sinceDate) {
-                $scope.error = "End date should be larger than start date";
+            if (date2 < date1) {
+                $scope.error = "To date should be after From date";
                 $scope.showSnackbar();
                 return;
             }
@@ -77,8 +77,7 @@ app.controller("app", function ($scope, $http) {
             query += "%20until:" + endDate;
         }
 
-        // Change base url to api.loklak.org later
-        var url = "http://35.184.151.104/api/search.json?callback=JSON_CALLBACK&" + query;
+        var url = "http://api.loklak.org/api/search.json?callback=JSON_CALLBACK&" + query;
         var count = $(".count").val();
         if (count !== undefined && count !== "") {
             url  += "&count=" + count;
