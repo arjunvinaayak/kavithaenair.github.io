@@ -1,13 +1,29 @@
 var app = angular.module('TweetSearch', []);
 app.controller('Controller', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
 
+    $scope.error = null;
+
+    $scope.showError = function() {
+        $(".snackbar").addClass("show");
+        setTimeout(function(){ $(".snackbar").removeClass("show") }, 3000);
+    }
+
     $scope.Search = function(query) {
         $scope.spinner = true;
+        $scope.error = null;
         if (query !== undefined)
             $scope.query = query;
 
         var QueryCommand = 'http://api.loklak.org/api/user.json?callback=JSON_CALLBACK&screen_name=' + $scope.query +
             '&followers=1000&following=1000';
+
+        console.log($scope.query);
+        if ($scope.query === '' || $scope.query === undefined) {
+            $scope.spinner = false;
+            $scope.error = "Please enter a valid Username";
+            $scope.showError();
+            return;
+        }
 
         $http.jsonp(String(QueryCommand)).success(function(response) {
 

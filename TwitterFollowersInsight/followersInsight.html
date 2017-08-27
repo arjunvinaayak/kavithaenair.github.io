@@ -46,15 +46,15 @@
                                         title="Search Twitter and the loklak network"
                                         placeholder="Search for a User"
                                         ng-init="query = ''"
-                                        ng-keyup="$event.keyCode == 13 && query != '' ? Search() : null"
-                                        oninvalid="this.setCustomValidity('Please Enter Username')"
-                                        ng-required="true">
+                                        ng-keyup="$event.keyCode == 13 ? Search() : null"
+                                        >
                                     <span class="input-group-btn">
                                         <button class="btn btn btn-primary" href='#'
                                             type="button" id="button"
-                                            ng-click="query != '' ? Search() : null">Search
+                                            ng-click="Search()">Search
                                         </button>
                                     </span>
+                                    <div class="snackbar">{{error}}</div>
                                 </div>
                             </div>
                         </form>
